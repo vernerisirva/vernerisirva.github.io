@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Verneri Sirva's personal AI portfolio with compact project notes, writing, experiments, and links."
+      content="Verneri Sirva's personal AI portfolio with writing about practical AI, software, experiments, and links."
     />
     <title>Verneri Sirva | Personal AI Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=vs-logo" />
+    <link rel="stylesheet" href="styles.css?v=blog-first" />
   </head>
   <body>
     <header class="site-header">
@@ -24,11 +24,10 @@
         </span>
         <span>
           <strong>Verneri Sirva</strong>
-          <small>Projects and notes</small>
+          <small>Writing and notes</small>
         </span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
         <a href="#writing">Writing</a>
         <a href="#links">Links</a>
       </nav>
@@ -37,76 +36,27 @@
     <main id="top">
       <section class="hero section-shell">
         <div class="hero-copy">
-          <p class="eyebrow">Personal portfolio</p>
+          <p class="eyebrow">Personal AI portfolio</p>
           <h1>Verneri Sirva</h1>
           <p class="hero-lede">
-            AI projects, experiments, and notes. A compact place for practical
-            prototypes, writing, and code.
+            Writing about practical AI, software, and experiments.
           </p>
           <div class="hero-actions" aria-label="Profile actions">
-            <a class="button primary" href="#projects">Projects</a>
-            <a class="button secondary" href="#writing">Writing</a>
+            <a class="button primary" href="#writing">Latest writing</a>
+            <a class="button secondary" href="#links">Links</a>
           </div>
         </div>
 
-        <div class="signal-panel" aria-label="Abstract AI signal map">
-          <div class="signal-header">
-            <span>Signal map</span>
-            <strong>Prototype / context / code</strong>
+        <div class="profile-panel" aria-label="Profile image placeholder">
+          <div class="profile-avatar" aria-hidden="true">VS</div>
+          <div class="profile-note">
+            <span>Profile</span>
+            <strong>Verneri Sirva</strong>
+            <p>
+              Personal writing home for practical AI notes, experiments, and
+              useful links.
+            </p>
           </div>
-          <div class="signal-field" aria-hidden="true">
-            <span class="signal-node node-a"></span>
-            <span class="signal-node node-b"></span>
-            <span class="signal-node node-c"></span>
-            <span class="signal-node node-d"></span>
-            <span class="signal-node node-e"></span>
-            <span class="signal-line line-a"></span>
-            <span class="signal-line line-b"></span>
-            <span class="signal-line line-c"></span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-shell projects-section" id="projects">
-        <div class="section-heading">
-          <p class="eyebrow">Projects</p>
-          <h2>Selected notes</h2>
-          <p>
-            Short, generalized summaries. No employer, client, or confidential
-            details.
-          </p>
-        </div>
-
-        <div class="project-grid">
-          <a class="project-card" href="https://github.com/vernerisirva/investmentagent">
-            <span>Public project</span>
-            <h3>InvestmentAgent</h3>
-            <p>
-              CLI-first research triage for Swedish and Finnish listed stocks,
-              focused on transparent scoring, evidence, and uncertainty.
-            </p>
-            <small>Python / CLI / GitHub Actions / not financial advice</small>
-          </a>
-
-          <article class="project-card">
-            <span>Personal agents</span>
-            <h3>Hilla assistant system</h3>
-            <p>
-              Telegram-based personal assistant with multiple background agents
-              for research, sales workflows, and task support under my control.
-            </p>
-            <small>Telegram / agent orchestration / human-in-the-loop</small>
-          </article>
-
-          <article class="project-card">
-            <span>Use case thinking</span>
-            <h3>Choosing smaller first experiments</h3>
-            <p>
-              Notes on sorting AI ideas by usefulness, feasibility, risk, and
-              what a prototype would actually teach.
-            </p>
-            <small>discovery / product thinking</small>
-          </article>
         </div>
       </section>
 
