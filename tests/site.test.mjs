@@ -17,8 +17,8 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /class="profile-avatar"/);
   assert.match(html, /src="assets\/verneri-profile\.jpg"/);
   assert.match(html, /alt="Portrait of Verneri Sirva"/);
-  assert.match(css, /--bg: #061526/);
-  assert.match(css, /--accent: #38bdf8/);
+  assert.match(css, /--bg: #f6f8fc/);
+  assert.match(css, /--accent: #0284c7/);
   assert.doesNotMatch(html, /AI consultant, builder, and writer at HiQ/);
 
   for (const id of ["about", "writing", "links"]) {
