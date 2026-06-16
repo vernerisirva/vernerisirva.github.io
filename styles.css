@@ -460,6 +460,9 @@ h3 {
 }
 
 .link-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   min-height: 40px;
   padding: 8px 12px;
   border: 1px solid var(--line);
@@ -468,6 +471,11 @@ h3 {
   color: var(--ink);
   font-weight: 800;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.link-icon {
+  flex: none;
+  color: var(--accent);
 }
 
 .link-row a:hover {
