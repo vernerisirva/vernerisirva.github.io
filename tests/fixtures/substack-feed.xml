@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Verneri's Newsletter</title>
+    <item>
+      <title><![CDATA[Newest AI systems note]]></title>
+      <description><![CDATA[Short summary for the newest post.]]></description>
+      <link>https://verneri.substack.com/p/newest-ai-systems-note</link>
+      <pubDate>Fri, 19 Jun 2026 07:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Second practical workflow note]]></title>
+      <description><![CDATA[Short summary for the second post with extra words that should not fit inside the card once the updater keeps summaries compact for the profile page layout.]]></description>
+      <link>https://verneri.substack.com/p/second-practical-workflow-note</link>
+      <pubDate>Wed, 17 Jun 2026 07:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Third model governance note]]></title>
+      <description><![CDATA[Short summary for the third post.]]></description>
+      <link>https://verneri.substack.com/p/third-model-governance-note</link>
+      <pubDate>Wed, 10 Jun 2026 07:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Fourth older note]]></title>
+      <description><![CDATA[This should not be rendered.]]></description>
+      <link>https://verneri.substack.com/p/fourth-older-note</link>
+      <pubDate>Wed, 03 Jun 2026 07:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -63,4 +66,46 @@ test("profile site includes assets and no accidental filler", () => {
   assert.match(html, /href="styles\.css(?:\?[^"]+)??"/);
   assert.match(html, /src="script\.js"/);
   assert.doesNotMatch(combined, /TODO|TBD|lorem|undefined/i);
+});
+
+test("Substack updater replaces the latest writing cards from an RSS feed", () => {
+  const tmp = mkdtempSync(join(tmpdir(), "personalprofile-"));
+  const tempIndex = join(tmp, "index.html");
+
+  try {
+    writeFileSync(tempIndex, read("index.html"));
+
+    execFileSync("python3", [
+      "scripts/update_substack_posts.py",
+      "--feed-file",
+      "tests/fixtures/substack-feed.xml",
+      "--index",
+      tempIndex,
+    ]);
+
+    const html = readFileSync(tempIndex, "utf8");
+    assert.match(html, /<!-- latest-posts:start -->/);
+    assert.match(html, /<!-- latest-posts:end -->/);
+    assert.match(html, /Newest AI systems note/);
+    assert.match(html, /Second practical workflow note/);
+    assert.match(html, /Short summary for the second post with extra words/);
+    assert.doesNotMatch(html, /once the updater keeps summaries compact/);
+    assert.match(html, /Third model governance note/);
+    assert.doesNotMatch(html, /Fourth older note/);
+
+    const postCards = html.match(/class="post-card"/g) ?? [];
+    assert.equal(postCards.length, 3);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
+test("GitHub Action refreshes Substack posts automatically", () => {
+  const workflow = read(".github/workflows/update-substack-posts.yml");
+
+  assert.match(workflow, /schedule:/);
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.match(workflow, /scripts\/update_substack_posts\.py/);
+  assert.match(workflow, /node --test tests\/site\.test\.mjs/);
+  assert.match(workflow, /git commit/);
 });
