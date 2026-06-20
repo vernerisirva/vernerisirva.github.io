@@ -477,11 +477,6 @@ h3 {
   color: var(--accent-strong);
 }
 
-.link-icon {
-  flex: none;
-  color: var(--accent);
-}
-
 .site-footer {
   display: flex;
   justify-content: space-between;

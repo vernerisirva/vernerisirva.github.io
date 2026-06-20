@@ -8,11 +8,11 @@ test("profile site includes the compact blue portfolio structure", () => {
   const html = read("index.html");
   const css = read("styles.css");
 
-  assert.match(html, /Practical AI for business/);
+  assert.match(html, /Practical AI and software/);
   assert.match(html, /Verneri Sirva/);
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
-  assert.match(html, /I build AI systems, tools, automation, and workflows that take real work off people's plates/);
+  assert.match(html, /I build and write about AI systems,\s+tools, automation, and workflows that make software work more\s+useful/);
   assert.match(html, /class="profile-panel"/);
   assert.match(html, /class="profile-avatar"/);
   assert.match(html, /src="assets\/verneri-profile\.jpg"/);
@@ -43,6 +43,7 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /https:\/\/github\.com\/vernerisirva/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/vernerisirva\//);
   assert.match(html, /mailto:verneri\.sirva@hiq\.se/);
+  assert.doesNotMatch(html, /tel:|\+46 70|Available for new engagements|Open to assignments|cut costs|save time|Contact me/);
   assert.doesNotMatch(html, /your-profile|your\.email@example\.com/);
   assert.match(html, /Where companies can use autonomous research workflows today/);
   assert.match(html, /Enterprise AI is Becoming Workflow Infrastructure/);
