@@ -11,7 +11,8 @@ test("profile site includes the compact blue portfolio structure", () => {
   const html = read("index.html");
   const css = read("styles.css");
 
-  assert.match(html, /Practical AI and software/);
+  assert.match(html, /AI systems and software/);
+  assert.doesNotMatch(html, /Practical AI|practical AI/);
   assert.match(html, /Verneri Sirva/);
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
