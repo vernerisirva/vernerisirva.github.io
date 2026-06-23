@@ -11,15 +11,17 @@ test("profile site includes the compact blue portfolio structure", () => {
   const html = read("index.html");
   const css = read("styles.css");
 
-  assert.match(html, /AI &amp; ML developer/);
+  assert.match(html, /AI systems developer/);
+  assert.doesNotMatch(html, /AI &amp; ML developer/);
   assert.doesNotMatch(html, /Practical AI|practical AI/);
   assert.match(html, /Verneri Sirva/);
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
   assert.doesNotMatch(html, /AI systems &amp; software/);
-  assert.match(html, /I work with AI, machine learning, and backend systems,\s+with a focus on reliable software around models and data/);
-  assert.match(html, /AI systems, machine learning, and backend engineering/);
+  assert.match(html, /I work with AI systems and backend engineering,\s+with a focus on reliable software around models and data/);
+  assert.match(html, /AI systems and backend engineering/);
   assert.doesNotMatch(html, /Machine learning, AI systems, and software/);
+  assert.doesNotMatch(html, /AI systems, machine learning, and backend engineering/);
   assert.doesNotMatch(html, /I also write about what I learn/);
   assert.doesNotMatch(html, /Longer notes on AI, prototypes, and software work/);
   assert.doesNotMatch(html, /AI workflows and agents/);
@@ -29,7 +31,7 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.doesNotMatch(html, /AI systems and workflows/);
   assert.doesNotMatch(html, /make software work more\s+useful/);
   assert.doesNotMatch(html, /I work with AI systems, automation, and backend software through\s+HiQ/);
-  assert.match(html, /AI, ML, and backend engineering/);
+  assert.match(html, /AI systems and backend engineering/);
   assert.match(html, /Notes on AI systems, model evaluation, and engineering work/);
   assert.match(html, /Technical writing and code/);
   assert.doesNotMatch(html, /Where the longer trail lives/);
