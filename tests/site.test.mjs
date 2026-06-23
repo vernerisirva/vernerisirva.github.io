@@ -18,8 +18,10 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, />VS</);
   assert.doesNotMatch(html, /AI systems &amp; software/);
   assert.match(html, /I build and write about AI systems,\s+tools, automation, and workflows that make software work more\s+useful/);
-  assert.match(html, /From prototypes to production/);
-  assert.match(html, /I work on AI workflows, agent systems, and the backend software\s+needed to make them useful/);
+  assert.match(html, /AI workflows and agents/);
+  assert.match(html, /I build agentic workflows and the backend services that support them/);
+  assert.doesNotMatch(html, /From prototypes to production/);
+  assert.doesNotMatch(html, /I work on AI workflows, agent systems, and the backend software\s+needed to make them useful/);
   assert.doesNotMatch(html, /AI systems and workflows/);
   assert.doesNotMatch(html, /I work with AI systems, automation, and backend software through\s+HiQ/);
   assert.match(html, /class="profile-panel"/);
