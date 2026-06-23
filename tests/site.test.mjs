@@ -17,9 +17,11 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
   assert.doesNotMatch(html, /AI systems &amp; software/);
-  assert.match(html, /I work with AI, machine learning, and backend software\.\s+I also write about what I learn/);
-  assert.match(html, /Machine learning, AI systems, and backend/);
+  assert.match(html, /I work with AI, machine learning, and backend systems,\s+with a focus on reliable software around models and data/);
+  assert.match(html, /Machine learning, AI systems, and backend engineering/);
   assert.doesNotMatch(html, /Machine learning, AI systems, and software/);
+  assert.doesNotMatch(html, /I also write about what I learn/);
+  assert.doesNotMatch(html, /Longer notes on AI, prototypes, and software work/);
   assert.doesNotMatch(html, /AI workflows and agents/);
   assert.doesNotMatch(html, /I build agentic workflows and the backend services that support them/);
   assert.doesNotMatch(html, /From prototypes to production/);
@@ -27,6 +29,10 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.doesNotMatch(html, /AI systems and workflows/);
   assert.doesNotMatch(html, /make software work more\s+useful/);
   assert.doesNotMatch(html, /I work with AI systems, automation, and backend software through\s+HiQ/);
+  assert.match(html, /AI, ML, and backend engineering/);
+  assert.match(html, /Notes on AI systems, model evaluation, and engineering work/);
+  assert.match(html, /Technical writing and code/);
+  assert.doesNotMatch(html, /Where the longer trail lives/);
   assert.match(html, /class="profile-panel"/);
   assert.match(html, /class="profile-avatar"/);
   assert.match(html, /src="assets\/verneri-profile\.jpg"/);
