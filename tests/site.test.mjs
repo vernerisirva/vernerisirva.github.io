@@ -48,6 +48,10 @@ test("profile site includes the compact blue portfolio structure", () => {
 
   assert.match(html, /https:\/\/huggingface\.co\/datasets\/vennu95/);
   assert.match(html, /Professional interests/);
+  assert.match(html, /class="about-copy"/);
+  assert.match(css, /\.about-copy/);
+  assert.match(css, /align-self: start/);
+  assert.match(css, /padding: 56px 0 56px/);
   assert.match(html, /Agentic memory/);
   assert.match(html, /Deep research/);
   assert.match(html, /Personal interests/);
@@ -82,7 +86,7 @@ test("profile site includes assets and no accidental filler", () => {
   const js = read("script.js");
   const combined = `${html}\n${css}\n${js}`;
 
-  assert.match(html, /href="styles\.css(?:\?[^"]+)??"/);
+  assert.match(html, /href="styles\.css\?v=layout1"/);
   assert.match(html, /src="script\.js"/);
   assert.doesNotMatch(combined, /TODO|TBD|lorem|undefined/i);
 });
@@ -167,7 +171,8 @@ test("Substack updater can use the RSS proxy JSON source", () => {
     const html = readFileSync(tempIndex, "utf8");
     assert.match(html, /Newest proxy post/);
     assert.match(html, /Second proxy post/);
-    assert.match(html, /Proxy summaries arrive as plain text/);
+    assert.match(html, /Proxy summaries with R&amp;D should decode correctly/);
+    assert.doesNotMatch(html, /R&amp;amp;D/);
     assert.doesNotMatch(html, /keeps the layout tidy and calm/);
     assert.match(html, /Third proxy post/);
     assert.doesNotMatch(html, /Fourth older proxy post/);

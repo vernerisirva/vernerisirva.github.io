@@ -96,7 +96,8 @@ def format_iso_date(value):
 
 
 def strip_html(value):
-    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", value)).strip()
+    text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", value)).strip()
+    return html.unescape(text)
 
 
 def compact_description(value):

@@ -277,7 +277,7 @@ h3 {
 
 /* Sections */
 .about-section {
-  padding-top: 56px;
+  padding: 56px 0 56px;
 }
 
 .section-heading {
@@ -297,7 +297,13 @@ h3 {
   align-items: start;
 }
 
-.about-body p {
+.about-copy {
+  display: grid;
+  gap: 24px;
+  align-self: start;
+}
+
+.about-copy p {
   max-width: 600px;
   margin-bottom: 0;
   color: var(--muted);
@@ -355,7 +361,7 @@ h3 {
 }
 
 .writing-section {
-  padding-top: 80px;
+  padding-top: 56px;
 }
 
 .link-grid,
@@ -553,6 +559,10 @@ h3 {
   .about-section,
   .writing-section {
     padding-top: 44px;
+  }
+
+  .about-section {
+    padding-bottom: 44px;
   }
 
   .links-section {
