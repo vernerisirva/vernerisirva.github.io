@@ -2,6 +2,7 @@
 import argparse
 import html
 import re
+import ssl
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -11,16 +12,40 @@ from pathlib import Path
 
 
 DEFAULT_FEED_URL = "https://verneri.substack.com/feed"
+FEED_HEADERS = {
+    "User-Agent": "VerneriSirvaProfileRSSUpdater/1.0 (+https://vernerisirva.github.io/)",
+    "Accept": "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+}
+CERTIFICATE_BUNDLE_CANDIDATES = [
+    Path("/etc/ssl/cert.pem"),
+    Path("/opt/homebrew/etc/openssl@3/cert.pem"),
+    Path("/usr/local/etc/openssl@3/cert.pem"),
+]
 START_MARKER = "<!-- latest-posts:start -->"
 END_MARKER = "<!-- latest-posts:end -->"
 MAX_DESCRIPTION_LENGTH = 92
+
+
+def build_ssl_context():
+    default_paths = ssl.get_default_verify_paths()
+
+    if default_paths.cafile and Path(default_paths.cafile).exists():
+        return ssl.create_default_context()
+
+    for cafile in CERTIFICATE_BUNDLE_CANDIDATES:
+        if cafile.exists():
+            return ssl.create_default_context(cafile=str(cafile))
+
+    return ssl.create_default_context()
 
 
 def read_feed(args):
     if args.feed_file:
         return Path(args.feed_file).read_text(encoding="utf-8")
 
-    with urllib.request.urlopen(args.feed_url, timeout=20) as response:
+    request = urllib.request.Request(args.feed_url, headers=FEED_HEADERS)
+
+    with urllib.request.urlopen(request, timeout=20, context=build_ssl_context()) as response:
         return response.read().decode("utf-8")
 
 

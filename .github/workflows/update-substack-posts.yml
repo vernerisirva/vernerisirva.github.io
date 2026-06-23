@@ -22,9 +22,7 @@ jobs:
           python-version: "3.x"
 
       - name: Refresh latest Substack posts
-        run: |
-          curl -fsSL https://verneri.substack.com/feed -o /tmp/substack-feed.xml
-          python3 scripts/update_substack_posts.py --feed-file /tmp/substack-feed.xml
+        run: python3 scripts/update_substack_posts.py
 
       - name: Verify site
         run: node --test tests/site.test.mjs

@@ -118,10 +118,15 @@ test("Substack updater replaces the latest writing cards from an RSS feed", () =
 
 test("GitHub Action refreshes Substack posts automatically", () => {
   const workflow = read(".github/workflows/update-substack-posts.yml");
+  const updater = read("scripts/update_substack_posts.py");
 
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /scripts\/update_substack_posts\.py/);
+  assert.doesNotMatch(workflow, /curl -fsSL https:\/\/verneri\.substack\.com\/feed/);
+  assert.match(updater, /User-Agent/);
+  assert.match(updater, /Accept/);
+  assert.match(updater, /ssl\.create_default_context/);
   assert.match(workflow, /node --test tests\/site\.test\.mjs/);
   assert.match(workflow, /git commit/);
 });
