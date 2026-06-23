@@ -38,6 +38,14 @@ test("profile site includes the compact blue portfolio structure", () => {
   }
 
   assert.match(html, /https:\/\/huggingface\.co\/datasets\/vennu95/);
+  assert.match(html, /Professional interests/);
+  assert.match(html, /Agentic memory/);
+  assert.match(html, /Deep research/);
+  assert.match(html, /Personal interests/);
+  assert.match(html, /Golf/);
+  assert.match(html, /Gym/);
+  assert.match(html, /Motorsport/);
+  assert.match(html, /Dogs/);
 
   const projectCards = html.match(/class="project-card"/g) ?? [];
   assert.equal(projectCards.length, 0);
