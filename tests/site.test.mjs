@@ -16,6 +16,7 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /Verneri Sirva/);
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
+  assert.doesNotMatch(html, /AI systems &amp; software/);
   assert.match(html, /I build and write about AI systems,\s+tools, automation, and workflows that make software work more\s+useful/);
   assert.match(html, /class="profile-panel"/);
   assert.match(html, /class="profile-avatar"/);

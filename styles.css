@@ -84,20 +84,13 @@ a {
   letter-spacing: 0.02em;
 }
 
-.brand strong,
-.brand small {
+.brand strong {
   display: block;
   line-height: 1.15;
 }
 
 .brand strong {
   font-size: 1.02rem;
-}
-
-.brand small {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 600;
 }
 
 .site-nav {
