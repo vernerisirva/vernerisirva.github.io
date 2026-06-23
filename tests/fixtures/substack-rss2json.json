@@ -1,0 +1,29 @@
+{
+  "status": "ok",
+  "items": [
+    {
+      "title": "Newest proxy post",
+      "link": "https://verneri.substack.com/p/newest-proxy-post",
+      "description": "Proxy summaries arrive as plain text.",
+      "pubDate": "2026-06-22 07:01:38"
+    },
+    {
+      "title": "Second proxy post",
+      "link": "https://verneri.substack.com/p/second-proxy-post",
+      "description": "This proxy summary has enough extra words to prove compacting still keeps the layout tidy and calm.",
+      "pubDate": "2026-06-15 07:01:38"
+    },
+    {
+      "title": "Third proxy post",
+      "link": "https://verneri.substack.com/p/third-proxy-post",
+      "description": "A concise third proxy summary.",
+      "pubDate": "2026-06-08 07:01:38"
+    },
+    {
+      "title": "Fourth older proxy post",
+      "link": "https://verneri.substack.com/p/fourth-older-proxy-post",
+      "description": "This should not be rendered.",
+      "pubDate": "2026-06-01 07:01:38"
+    }
+  ]
+}

@@ -146,6 +146,36 @@ test("Substack updater can use the Substack archive JSON API", () => {
   }
 });
 
+test("Substack updater can use the RSS proxy JSON source", () => {
+  const tmp = mkdtempSync(join(tmpdir(), "personalprofile-"));
+  const tempIndex = join(tmp, "index.html");
+
+  try {
+    writeFileSync(tempIndex, read("index.html"));
+
+    execFileSync("python3", [
+      "scripts/update_substack_posts.py",
+      "--proxy-file",
+      "tests/fixtures/substack-rss2json.json",
+      "--index",
+      tempIndex,
+    ]);
+
+    const html = readFileSync(tempIndex, "utf8");
+    assert.match(html, /Newest proxy post/);
+    assert.match(html, /Second proxy post/);
+    assert.match(html, /Proxy summaries arrive as plain text/);
+    assert.doesNotMatch(html, /keeps the layout tidy and calm/);
+    assert.match(html, /Third proxy post/);
+    assert.doesNotMatch(html, /Fourth older proxy post/);
+
+    const postCards = html.match(/class="post-card"/g) ?? [];
+    assert.equal(postCards.length, 3);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
 test("GitHub Action refreshes Substack posts automatically", () => {
   const workflow = read(".github/workflows/update-substack-posts.yml");
   const updater = read("scripts/update_substack_posts.py");
@@ -153,14 +183,15 @@ test("GitHub Action refreshes Substack posts automatically", () => {
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /scripts\/update_substack_posts\.py/);
-  assert.match(workflow, /pip install curl_cffi/);
+  assert.doesNotMatch(workflow, /pip install curl_cffi/);
   assert.doesNotMatch(workflow, /curl -fsSL https:\/\/verneri\.substack\.com\/feed/);
   assert.match(updater, /api\/v1\/archive/);
+  assert.match(updater, /api\.rss2json\.com/);
   assert.match(updater, /User-Agent/);
   assert.match(updater, /Accept/);
   assert.match(updater, /ssl\.create_default_context/);
-  assert.match(updater, /curl_cffi/);
-  assert.match(updater, /impersonate="chrome"/);
+  assert.doesNotMatch(updater, /curl_cffi/);
+  assert.doesNotMatch(updater, /impersonate="chrome"/);
   assert.match(workflow, /node --test tests\/site\.test\.mjs/);
   assert.match(workflow, /git commit/);
 });
