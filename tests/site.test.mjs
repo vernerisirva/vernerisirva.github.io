@@ -11,18 +11,20 @@ test("profile site includes the compact blue portfolio structure", () => {
   const html = read("index.html");
   const css = read("styles.css");
 
-  assert.match(html, /AI systems and software/);
+  assert.match(html, /AI &amp; ML developer/);
   assert.doesNotMatch(html, /Practical AI|practical AI/);
   assert.match(html, /Verneri Sirva/);
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
   assert.doesNotMatch(html, /AI systems &amp; software/);
-  assert.match(html, /I build and write about AI systems,\s+tools, automation, and workflows that make software work more\s+useful/);
-  assert.match(html, /AI workflows and agents/);
-  assert.match(html, /I build agentic workflows and the backend services that support them/);
+  assert.match(html, /I work with AI, machine learning, and backend software\.\s+I also write about what I learn/);
+  assert.match(html, /Machine learning, AI systems, and software/);
+  assert.doesNotMatch(html, /AI workflows and agents/);
+  assert.doesNotMatch(html, /I build agentic workflows and the backend services that support them/);
   assert.doesNotMatch(html, /From prototypes to production/);
   assert.doesNotMatch(html, /I work on AI workflows, agent systems, and the backend software\s+needed to make them useful/);
   assert.doesNotMatch(html, /AI systems and workflows/);
+  assert.doesNotMatch(html, /make software work more\s+useful/);
   assert.doesNotMatch(html, /I work with AI systems, automation, and backend software through\s+HiQ/);
   assert.match(html, /class="profile-panel"/);
   assert.match(html, /class="profile-avatar"/);
