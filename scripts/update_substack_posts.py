@@ -4,6 +4,7 @@ import html
 import re
 import ssl
 import sys
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import timezone
@@ -39,14 +40,37 @@ def build_ssl_context():
     return ssl.create_default_context()
 
 
+def read_feed_with_browser_fallback(feed_url):
+    try:
+        from curl_cffi import requests
+    except ImportError as error:
+        raise RuntimeError(
+            "Substack rejected the feed request and curl_cffi is not installed"
+        ) from error
+
+    response = requests.get(
+        feed_url,
+        headers=FEED_HEADERS,
+        impersonate="chrome",
+        timeout=20,
+    )
+    response.raise_for_status()
+    return response.text
+
+
 def read_feed(args):
     if args.feed_file:
         return Path(args.feed_file).read_text(encoding="utf-8")
 
     request = urllib.request.Request(args.feed_url, headers=FEED_HEADERS)
 
-    with urllib.request.urlopen(request, timeout=20, context=build_ssl_context()) as response:
-        return response.read().decode("utf-8")
+    try:
+        with urllib.request.urlopen(request, timeout=20, context=build_ssl_context()) as response:
+            return response.read().decode("utf-8")
+    except urllib.error.HTTPError as error:
+        if error.code == 403:
+            return read_feed_with_browser_fallback(args.feed_url)
+        raise
 
 
 def child_text(item, tag):

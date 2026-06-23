@@ -123,10 +123,13 @@ test("GitHub Action refreshes Substack posts automatically", () => {
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /scripts\/update_substack_posts\.py/);
+  assert.match(workflow, /pip install curl_cffi/);
   assert.doesNotMatch(workflow, /curl -fsSL https:\/\/verneri\.substack\.com\/feed/);
   assert.match(updater, /User-Agent/);
   assert.match(updater, /Accept/);
   assert.match(updater, /ssl\.create_default_context/);
+  assert.match(updater, /curl_cffi/);
+  assert.match(updater, /impersonate="chrome"/);
   assert.match(workflow, /node --test tests\/site\.test\.mjs/);
   assert.match(workflow, /git commit/);
 });

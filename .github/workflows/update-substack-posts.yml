@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Install feed fetch fallback
+        run: python3 -m pip install curl_cffi
+
       - name: Refresh latest Substack posts
         run: python3 scripts/update_substack_posts.py
 
