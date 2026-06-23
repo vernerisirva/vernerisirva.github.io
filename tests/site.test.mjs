@@ -116,6 +116,36 @@ test("Substack updater replaces the latest writing cards from an RSS feed", () =
   }
 });
 
+test("Substack updater can use the Substack archive JSON API", () => {
+  const tmp = mkdtempSync(join(tmpdir(), "personalprofile-"));
+  const tempIndex = join(tmp, "index.html");
+
+  try {
+    writeFileSync(tempIndex, read("index.html"));
+
+    execFileSync("python3", [
+      "scripts/update_substack_posts.py",
+      "--archive-file",
+      "tests/fixtures/substack-archive.json",
+      "--index",
+      tempIndex,
+    ]);
+
+    const html = readFileSync(tempIndex, "utf8");
+    assert.match(html, /Newest archive post/);
+    assert.match(html, /Second archive post/);
+    assert.match(html, /Archive summaries are shorter and already plain text/);
+    assert.doesNotMatch(html, /keeps the layout tidy and calm/);
+    assert.match(html, /Third archive post/);
+    assert.doesNotMatch(html, /Fourth older archive post/);
+
+    const postCards = html.match(/class="post-card"/g) ?? [];
+    assert.equal(postCards.length, 3);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
 test("GitHub Action refreshes Substack posts automatically", () => {
   const workflow = read(".github/workflows/update-substack-posts.yml");
   const updater = read("scripts/update_substack_posts.py");
@@ -125,6 +155,7 @@ test("GitHub Action refreshes Substack posts automatically", () => {
   assert.match(workflow, /scripts\/update_substack_posts\.py/);
   assert.match(workflow, /pip install curl_cffi/);
   assert.doesNotMatch(workflow, /curl -fsSL https:\/\/verneri\.substack\.com\/feed/);
+  assert.match(updater, /api\/v1\/archive/);
   assert.match(updater, /User-Agent/);
   assert.match(updater, /Accept/);
   assert.match(updater, /ssl\.create_default_context/);

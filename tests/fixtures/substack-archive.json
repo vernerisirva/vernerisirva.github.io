@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Newest archive post",
+    "canonical_url": "https://verneri.substack.com/p/newest-archive-post",
+    "subtitle": "Archive summaries are shorter and already plain text.",
+    "post_date": "2026-06-21T07:01:38.491Z"
+  },
+  {
+    "title": "Second archive post",
+    "canonical_url": "https://verneri.substack.com/p/second-archive-post",
+    "subtitle": "This archive summary has enough extra words to prove compacting still keeps the layout tidy and calm.",
+    "post_date": "2026-06-14T07:01:38.491Z"
+  },
+  {
+    "title": "Third archive post",
+    "canonical_url": "https://verneri.substack.com/p/third-archive-post",
+    "subtitle": "A concise third archive summary.",
+    "post_date": "2026-06-07T07:01:38.491Z"
+  },
+  {
+    "title": "Fourth older archive post",
+    "canonical_url": "https://verneri.substack.com/p/fourth-older-archive-post",
+    "subtitle": "This should not be rendered.",
+    "post_date": "2026-05-31T07:01:38.491Z"
+  }
+]

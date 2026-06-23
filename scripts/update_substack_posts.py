@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 import argparse
 import html
+import json
 import re
 import ssl
 import sys
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import timezone
+from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 
 DEFAULT_FEED_URL = "https://verneri.substack.com/feed"
+DEFAULT_ARCHIVE_URL = (
+    "https://verneri.substack.com/api/v1/archive?sort=new&search=&offset=0&limit=3"
+)
 FEED_HEADERS = {
     "User-Agent": "VerneriSirvaProfileRSSUpdater/1.0 (+https://vernerisirva.github.io/)",
-    "Accept": "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+    "Accept": "application/json, application/rss+xml;q=0.9, application/xml;q=0.8, */*;q=0.5",
 }
 CERTIFICATE_BUNDLE_CANDIDATES = [
     Path("/etc/ssl/cert.pem"),
@@ -40,16 +44,16 @@ def build_ssl_context():
     return ssl.create_default_context()
 
 
-def read_feed_with_browser_fallback(feed_url):
+def read_with_browser_fallback(url):
     try:
         from curl_cffi import requests
     except ImportError as error:
         raise RuntimeError(
-            "Substack rejected the feed request and curl_cffi is not installed"
+            "Substack rejected the request and curl_cffi is not installed"
         ) from error
 
     response = requests.get(
-        feed_url,
+        url,
         headers=FEED_HEADERS,
         impersonate="chrome",
         timeout=20,
@@ -58,19 +62,30 @@ def read_feed_with_browser_fallback(feed_url):
     return response.text
 
 
-def read_feed(args):
-    if args.feed_file:
-        return Path(args.feed_file).read_text(encoding="utf-8")
-
-    request = urllib.request.Request(args.feed_url, headers=FEED_HEADERS)
+def read_url(url):
+    request = urllib.request.Request(url, headers=FEED_HEADERS)
 
     try:
         with urllib.request.urlopen(request, timeout=20, context=build_ssl_context()) as response:
             return response.read().decode("utf-8")
     except urllib.error.HTTPError as error:
         if error.code == 403:
-            return read_feed_with_browser_fallback(args.feed_url)
+            return read_with_browser_fallback(url)
         raise
+
+
+def read_feed(args):
+    if args.feed_file:
+        return Path(args.feed_file).read_text(encoding="utf-8")
+
+    return read_url(args.feed_url)
+
+
+def read_archive(args):
+    if args.archive_file:
+        return Path(args.archive_file).read_text(encoding="utf-8")
+
+    return read_url(args.archive_url)
 
 
 def child_text(item, tag):
@@ -82,6 +97,13 @@ def child_text(item, tag):
 
 def format_date(value):
     parsed = parsedate_to_datetime(value)
+    if parsed.tzinfo is not None:
+        parsed = parsed.astimezone(timezone.utc)
+    return f"{parsed.day} {parsed:%b %Y}"
+
+
+def format_iso_date(value):
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     if parsed.tzinfo is not None:
         parsed = parsed.astimezone(timezone.utc)
     return f"{parsed.day} {parsed:%b %Y}"
@@ -125,6 +147,31 @@ def parse_posts(feed_xml, count):
     raise ValueError(f"Expected at least {count} complete posts in feed, found {len(posts)}")
 
 
+def parse_archive_posts(archive_json, count):
+    posts = []
+
+    for item in json.loads(archive_json):
+        title = item.get("title", "").strip()
+        link = item.get("canonical_url", "").strip()
+        description = compact_description(strip_html(item.get("subtitle", "").strip()))
+        post_date = item.get("post_date", "").strip()
+
+        if not title or not link or not description or not post_date:
+            continue
+
+        posts.append({
+            "title": title,
+            "link": link,
+            "description": description,
+            "date": format_iso_date(post_date),
+        })
+
+        if len(posts) == count:
+            return posts
+
+    raise ValueError(f"Expected at least {count} complete posts in archive, found {len(posts)}")
+
+
 def render_posts(posts):
     rendered = [f"            {START_MARKER}"]
 
@@ -156,15 +203,21 @@ def replace_posts(index_html, rendered_posts):
 
 def main():
     parser = argparse.ArgumentParser(description="Update latest Substack posts in index.html")
-    parser.add_argument("--feed-url", default=DEFAULT_FEED_URL)
+    parser.add_argument("--archive-url", default=DEFAULT_ARCHIVE_URL)
+    parser.add_argument("--archive-file")
+    parser.add_argument("--feed-url")
     parser.add_argument("--feed-file")
     parser.add_argument("--index", default="index.html")
     parser.add_argument("--count", type=int, default=3)
     args = parser.parse_args()
 
     index_path = Path(args.index)
-    feed_xml = read_feed(args)
-    posts = parse_posts(feed_xml, args.count)
+    if args.feed_file or args.feed_url:
+        feed_xml = read_feed(args)
+        posts = parse_posts(feed_xml, args.count)
+    else:
+        archive_json = read_archive(args)
+        posts = parse_archive_posts(archive_json, args.count)
     current_html = index_path.read_text(encoding="utf-8")
     updated_html = replace_posts(current_html, render_posts(posts))
     index_path.write_text(updated_html, encoding="utf-8")
