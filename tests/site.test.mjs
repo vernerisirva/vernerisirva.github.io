@@ -18,7 +18,7 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /class="brand-mark" aria-label="VS logo"/);
   assert.match(html, />VS</);
   assert.doesNotMatch(html, /AI systems &amp; software/);
-  assert.match(html, /I work with AI systems and backend engineering,\s+with a focus on reliable software around models and data/);
+  assert.match(html, /I work with AI systems, research, and backend engineering,\s+with a focus on reliable software around models and data/);
   assert.match(html, /AI systems and backend engineering/);
   assert.doesNotMatch(html, /Machine learning, AI systems, and software/);
   assert.doesNotMatch(html, /AI systems, machine learning, and backend engineering/);
