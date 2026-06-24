@@ -35,6 +35,8 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /Notes on AI systems, model evaluation, and engineering work/);
   assert.match(html, /Technical writing and code/);
   assert.doesNotMatch(html, /Where the longer trail lives/);
+  assert.match(html, /MSc in Computer Science\s+\(Machine Learning, pending official confirmation\)/);
+  assert.match(html, /MSc Computer Science \(pending\)/);
   assert.match(html, /class="profile-panel"/);
   assert.match(html, /class="profile-avatar"/);
   assert.match(html, /src="assets\/verneri-profile\.jpg"/);
