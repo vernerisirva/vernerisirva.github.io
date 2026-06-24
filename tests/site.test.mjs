@@ -64,6 +64,9 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(css, /padding: 56px 0 56px/);
   assert.match(html, /Agentic memory/);
   assert.match(html, /Deep research/);
+  assert.match(html, /Current: agentic memory research with/);
+  assert.match(html, /https:\/\/www\.olaresearch\.org\//);
+  assert.match(html, /https:\/\/github\.com\/OLAResearch/);
   assert.match(html, /Personal interests/);
   assert.match(html, /Golf/);
   assert.match(html, /Gym/);

@@ -339,6 +339,18 @@ h3 {
   font-weight: 500;
 }
 
+.interests-card a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(2, 132, 199, 0.35);
+  text-underline-offset: 3px;
+}
+
+.interests-card a:hover {
+  color: var(--accent);
+}
+
 .stat {
   padding: 16px 18px;
   border: 1px solid var(--line);
