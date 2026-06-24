@@ -79,9 +79,35 @@ a {
   font-weight: 800;
 }
 
-.brand-mark span {
-  font-size: 0.92rem;
-  letter-spacing: 0.02em;
+.brand-dog {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+
+.dog-head,
+.dog-ear,
+.dog-nose {
+  fill: #111827;
+}
+
+.dog-muzzle {
+  fill: #334155;
+}
+
+.dog-eye {
+  fill: #f8fafc;
+}
+
+.dog-collar {
+  fill: var(--accent);
+}
+
+.dog-tag {
+  fill: #f8fafc;
+  font-size: 4.7px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .brand strong {
