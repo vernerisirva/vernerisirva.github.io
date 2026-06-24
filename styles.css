@@ -86,22 +86,25 @@ a {
 }
 
 .dog-head,
-.dog-ear,
+.dog-ear {
+  fill: #182234;
+}
+
 .dog-nose {
-  fill: #111827;
+  fill: #0b1120;
 }
 
 .dog-highlight {
-  fill: #1f2937;
-  opacity: 0.72;
+  fill: #2c3a4f;
+  opacity: 0.76;
 }
 
 .dog-muzzle {
-  fill: #202b3a;
+  fill: #2a3748;
 }
 
 .dog-eye {
-  fill: #8b6b35;
+  fill: #0ea5e9;
 }
 
 .dog-pupil {

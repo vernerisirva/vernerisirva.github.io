@@ -21,6 +21,8 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /class="dog-tag"[^>]*>VS</);
   assert.match(css, /\.dog-head/);
   assert.match(css, /\.dog-highlight/);
+  assert.match(css, /fill: #182234/);
+  assert.match(css, /fill: #0ea5e9/);
   assert.match(css, /\.dog-collar/);
   assert.doesNotMatch(html, /AI systems &amp; software/);
   assert.match(html, /I work with AI systems, research, and backend engineering,\s+with a focus on reliable software around models and data/);
