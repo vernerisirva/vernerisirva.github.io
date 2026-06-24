@@ -19,10 +19,12 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /class="brand-dog"/);
   assert.match(html, /class="dog-backdrop"/);
   assert.match(html, /class="dog-base"/);
+  assert.match(html, /class="dog-treat"/);
   assert.match(html, /class="dog-tongue"/);
   assert.match(html, /class="dog-tag"[^>]*>VS</);
   assert.match(css, /background: #f0f9ff/);
   assert.match(css, /\.dog-backdrop/);
+  assert.match(css, /\.dog-treat/);
   assert.match(css, /\.dog-head/);
   assert.match(css, /\.dog-highlight/);
   assert.match(css, /fill: #182234/);

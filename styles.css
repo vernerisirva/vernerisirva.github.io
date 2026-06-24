@@ -94,6 +94,11 @@ a {
   opacity: 0.72;
 }
 
+.dog-treat {
+  fill: #7dd3fc;
+  opacity: 0.28;
+}
+
 .dog-head,
 .dog-ear {
   fill: #182234;
