@@ -73,7 +73,7 @@ a {
   place-items: center;
   border: 1px solid var(--line-strong);
   border-radius: 11px;
-  background: var(--surface);
+  background: #f0f9ff;
   box-shadow: var(--shadow-sm);
   color: var(--accent);
   font-weight: 800;
@@ -83,6 +83,15 @@ a {
   width: 36px;
   height: 36px;
   display: block;
+}
+
+.dog-backdrop {
+  fill: #e0f2fe;
+}
+
+.dog-base {
+  fill: #bae6fd;
+  opacity: 0.72;
 }
 
 .dog-head,
