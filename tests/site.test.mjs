@@ -17,8 +17,10 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /Verneri Sirva/);
   assert.match(html, /class="brand-mark" aria-label="Black Labrador logo"/);
   assert.match(html, /class="brand-dog"/);
+  assert.match(html, /class="dog-tongue"/);
   assert.match(html, /class="dog-tag"[^>]*>VS</);
   assert.match(css, /\.dog-head/);
+  assert.match(css, /\.dog-highlight/);
   assert.match(css, /\.dog-collar/);
   assert.doesNotMatch(html, /AI systems &amp; software/);
   assert.match(html, /I work with AI systems, research, and backend engineering,\s+with a focus on reliable software around models and data/);

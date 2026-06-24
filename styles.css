@@ -81,7 +81,7 @@ a {
 
 .brand-dog {
   width: 36px;
-  height: 34px;
+  height: 36px;
   display: block;
 }
 
@@ -91,16 +91,29 @@ a {
   fill: #111827;
 }
 
+.dog-highlight {
+  fill: #1f2937;
+  opacity: 0.72;
+}
+
 .dog-muzzle {
-  fill: #334155;
+  fill: #202b3a;
 }
 
 .dog-eye {
-  fill: #f8fafc;
+  fill: #8b6b35;
+}
+
+.dog-pupil {
+  fill: #0b1120;
 }
 
 .dog-collar {
   fill: var(--accent);
+}
+
+.dog-tongue {
+  fill: #f08a9a;
 }
 
 .dog-tag {
