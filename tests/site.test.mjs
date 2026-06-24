@@ -34,6 +34,8 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.doesNotMatch(html, /AI systems and workflows/);
   assert.doesNotMatch(html, /make software work more\s+useful/);
   assert.doesNotMatch(html, /I work with AI systems, automation, and backend software through\s+HiQ/);
+  assert.match(html, /Working with AI systems and software at HiQ/);
+  assert.doesNotMatch(html, /Working with AI systems and software through HiQ/);
   assert.match(html, /AI systems and backend engineering/);
   assert.match(html, /Notes on AI systems, model evaluation, and engineering work/);
   assert.match(html, /Technical writing and code/);
