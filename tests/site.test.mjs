@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -15,6 +15,9 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.doesNotMatch(html, /AI &amp; ML developer/);
   assert.doesNotMatch(html, /Practical AI|practical AI/);
   assert.match(html, /Verneri Sirva/);
+  assert.match(html, /<body id="top">/);
+  assert.match(html, /class="skip-link" href="#main"/);
+  assert.match(html, /<main id="main">/);
   assert.match(html, /class="brand-mark" aria-label="Black Labrador logo"/);
   assert.match(html, /class="brand-dog"/);
   assert.match(html, /class="dog-backdrop"/);
@@ -30,6 +33,8 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(css, /fill: #182234/);
   assert.match(css, /fill: #0ea5e9/);
   assert.match(css, /\.dog-collar/);
+  assert.match(css, /a:focus-visible/);
+  assert.match(css, /\.skip-link:focus/);
   assert.doesNotMatch(html, /AI systems &amp; software/);
   assert.match(html, /I work with AI systems, research, and backend engineering,\s+with a focus on reliable software around models and data/);
   assert.match(html, /AI systems and backend engineering/);
@@ -98,6 +103,10 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /https:\/\/github\.com\/vernerisirva/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/vernerisirva\//);
   assert.match(html, /mailto:verneri\.sirva@hiq\.se/);
+  assert.match(html, /rel="icon" href="assets\/favicon\.svg" type="image\/svg\+xml"/);
+  assert.match(html, /property="og:title" content="Verneri Sirva \| AI systems developer"/);
+  assert.match(html, /property="og:url" content="https:\/\/vernerisirva\.github\.io\/"/);
+  assert.match(html, /name="twitter:card" content="summary"/);
   assert.doesNotMatch(html, /tel:|\+46 70|Available for new engagements|Open to assignments|cut costs|save time|Contact me/);
   assert.doesNotMatch(html, /your-profile|your\.email@example\.com/);
   assert.match(html, /How companies should evaluate Chinese and open-weight AI models/);
@@ -113,10 +122,14 @@ test("profile site includes assets and no accidental filler", () => {
   const html = read("index.html");
   const css = read("styles.css");
   const js = read("script.js");
+  const favicon = read("assets/favicon.svg");
   const combined = `${html}\n${css}\n${js}`;
 
-  assert.match(html, /href="styles\.css\?v=layout1"/);
+  assert.match(html, /href="styles\.css\?v=polish1"/);
   assert.match(html, /src="script\.js"/);
+  assert.ok(existsSync(new URL("../assets/favicon.svg", import.meta.url)));
+  assert.match(favicon, /<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 64 64">/);
+  assert.match(favicon, /#0ea5e9/);
   assert.doesNotMatch(combined, /TODO|TBD|lorem|undefined/i);
 });
 
