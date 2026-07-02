@@ -109,10 +109,11 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /name="twitter:card" content="summary"/);
   assert.doesNotMatch(html, /tel:|\+46 70|Available for new engagements|Open to assignments|cut costs|save time|Contact me/);
   assert.doesNotMatch(html, /your-profile|your\.email@example\.com/);
-  assert.match(html, /How companies should evaluate Chinese and open-weight AI models/);
-  assert.match(html, /Where companies can use autonomous research workflows today/);
-  assert.match(html, /Enterprise AI is Becoming Workflow Infrastructure/);
   assert.doesNotMatch(html, /Eight things I’ve learned by 30/);
+  const latestBlock = html.match(/<!-- latest-posts:start -->([\s\S]*?)<!-- latest-posts:end -->/)?.[1] ?? "";
+  assert.match(latestBlock, /href="https:\/\/verneri\.substack\.com\/p\//);
+  assert.match(latestBlock, /<strong>[^<]+<\/strong>/);
+  assert.match(latestBlock, /<small>[^<]+<\/small>/);
   const postCards = html.match(/class="post-card"/g) ?? [];
   assert.equal(postCards.length, 3);
   assert.doesNotMatch(html, /Start a conversation|Want to explore where AI could create value/i);
