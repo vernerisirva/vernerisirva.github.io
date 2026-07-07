@@ -96,74 +96,49 @@ button:focus-visible {
   width: 42px;
   height: 42px;
   place-items: center;
-  border: 1px solid var(--line-strong);
   border-radius: 11px;
-  background: #f0f9ff;
   box-shadow: var(--shadow-sm);
-  color: var(--accent);
-  font-weight: 800;
 }
 
 .brand-dog {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   display: block;
 }
 
-.dog-backdrop {
-  fill: #e0f2fe;
-}
-
-.dog-base {
+.dog-ear {
   fill: #bae6fd;
-  opacity: 0.72;
-}
-
-.dog-treat {
-  fill: #7dd3fc;
-  opacity: 0.28;
 }
 
 .dog-head {
-  fill: #315379;
-}
-
-.dog-ear {
-  fill: #274465;
-}
-
-.dog-nose {
-  fill: #16304c;
-}
-
-.dog-highlight {
-  fill: #6f92ba;
-  opacity: 0.8;
+  fill: #f8fafc;
 }
 
 .dog-muzzle {
-  fill: #3f648e;
+  fill: #ffffff;
 }
 
-.dog-eye {
-  fill: #0ea5e9;
+.dog-eye,
+.dog-nose {
+  fill: #0f2c4a;
 }
 
-.dog-pupil {
-  fill: #16304c;
-}
-
-.dog-collar {
-  fill: var(--accent);
+.dog-glint {
+  fill: #ffffff;
+  opacity: 0.9;
 }
 
 .dog-tongue {
-  fill: #f08a9a;
+  fill: #fb7185;
+}
+
+.dog-collar {
+  fill: #ffffff;
 }
 
 .dog-tag {
-  fill: #f8fafc;
-  font-size: 4.7px;
+  fill: #0369a1;
+  font-size: 5px;
   font-weight: 800;
   letter-spacing: 0.08em;
 }

@@ -23,52 +23,42 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=logo-blue" />
+    <link rel="stylesheet" href="styles.css?v=logo-pup" />
   </head>
   <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Back to top">
-        <span class="brand-mark" aria-label="Blue Labrador logo">
-          <svg class="brand-dog" viewBox="0 0 56 56" aria-hidden="true" focusable="false">
-            <rect class="dog-backdrop" x="4" y="4" width="48" height="48" rx="13" />
-            <path
-              class="dog-treat"
-              d="M15.2 13.8c-.7-.7-.7-1.8 0-2.5.4-.4.9-.5 1.4-.5 0-.5.2-1 .5-1.4.7-.7 1.8-.7 2.5 0 .4.4.5.9.5 1.4.5 0 1 .2 1.4.5.7.7.7 1.8 0 2.5-.4.4-.9.5-1.4.5 0 .5-.2 1-.5 1.4-.7.7-1.8.7-2.5 0-.4-.4-.5-.9-.5-1.4-.5 0-1-.2-1.4-.5Z"
-            />
-            <path
-              class="dog-treat"
-              d="M36.2 13.6c-.7-.7-.7-1.8 0-2.5.4-.4.9-.5 1.4-.5 0-.5.2-1 .5-1.4.7-.7 1.8-.7 2.5 0 .4.4.5.9.5 1.4.5 0 1 .2 1.4.5.7.7.7 1.8 0 2.5-.4.4-.9.5-1.4.5 0 .5-.2 1-.5 1.4-.7.7-1.8.7-2.5 0-.4-.4-.5-.9-.5-1.4-.5 0-1-.2-1.4-.5Z"
-            />
-            <path class="dog-base" d="M12 43.2c5.2 4.1 10.4 6.2 16 6.2s10.8-2.1 16-6.2v7.2H12v-7.2Z" />
-            <path
-              class="dog-ear"
-              d="M13.9 18.2c-6.1 4.7-8.4 13.5-6 20.9 1 3.2 3.2 5.2 5.8 5.2 3.5 0 5.8-3.4 6.1-8.6.4-6.8-1.7-13.6-5.9-17.5Z"
-            />
-            <path
-              class="dog-ear"
-              d="M42.1 18.2c6.1 4.7 8.4 13.5 6 20.9-1 3.2-3.2 5.2-5.8 5.2-3.5 0-5.8-3.4-6.1-8.6-.4-6.8 1.7-13.6 5.9-17.5Z"
-            />
+        <span class="brand-mark" aria-label="Dog logo">
+          <svg class="brand-dog" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="brand-sky" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#38bdf8" />
+                <stop offset="1" stop-color="#0369a1" />
+              </linearGradient>
+            </defs>
+            <rect class="dog-backdrop" width="64" height="64" rx="16" fill="url(#brand-sky)" />
+            <ellipse class="dog-ear" cx="15.5" cy="33" rx="7" ry="12.5" transform="rotate(14 15.5 33)" />
+            <ellipse class="dog-ear" cx="48.5" cy="33" rx="7" ry="12.5" transform="rotate(-14 48.5 33)" />
             <path
               class="dog-head"
-              d="M28 8.5c-9.2 0-15.9 7.4-15.9 18 0 10.8 6.1 19.1 15.9 19.1s15.9-8.3 15.9-19.1c0-10.6-6.7-18-15.9-18Z"
+              d="M32 12c-10.5 0-17 7.6-17 17.5 0 10.5 6.8 18 17 18s17-7.5 17-18C49 19.6 42.5 12 32 12Z"
+            />
+            <ellipse class="dog-muzzle" cx="32" cy="38.5" rx="9" ry="7" />
+            <circle class="dog-eye" cx="25" cy="27.5" r="2.3" />
+            <circle class="dog-eye" cx="39" cy="27.5" r="2.3" />
+            <circle class="dog-glint" cx="25.8" cy="26.7" r="0.75" />
+            <circle class="dog-glint" cx="39.8" cy="26.7" r="0.75" />
+            <path
+              class="dog-nose"
+              d="M32 33.4c2.7 0 4.3 1.3 4.3 3 0 2-1.9 3.4-4.3 3.4s-4.3-1.4-4.3-3.4c0-1.7 1.6-3 4.3-3Z"
             />
             <path
-              class="dog-highlight"
-              d="M27.1 10.1c-3.8 2.7-5.8 7.9-5.6 14.6.1 4.7 1.2 8.4 3.3 11.3-1.2-5.9-.4-13.3 2.3-25.9Z"
+              class="dog-tongue"
+              d="M29.4 41.9c.5 1.7 1.4 3.9 2.6 3.9s2.1-2.2 2.6-3.9c-.9.4-1.7.6-2.6.6s-1.7-.2-2.6-.6Z"
             />
-            <ellipse class="dog-eye" cx="20.8" cy="26.2" rx="2.4" ry="2.1" />
-            <ellipse class="dog-eye" cx="35.2" cy="26.2" rx="2.4" ry="2.1" />
-            <circle class="dog-pupil" cx="20.8" cy="26.2" r="1" />
-            <circle class="dog-pupil" cx="35.2" cy="26.2" r="1" />
-            <path
-              class="dog-muzzle"
-              d="M17.8 34.2c1.7-4.4 5.2-6.8 10.2-6.8s8.5 2.4 10.2 6.8c1.6 4.3-.9 8.7-4.7 10.8-2 1.1-3.9.4-5.5-1.2-1.6 1.6-3.5 2.3-5.5 1.2-3.8-2.1-6.3-6.5-4.7-10.8Z"
-            />
-            <path class="dog-nose" d="M22.7 34.8c0-2.2 2.1-3.8 5.3-3.8s5.3 1.6 5.3 3.8c0 2.5-2.4 4.2-5.3 4.2s-5.3-1.7-5.3-4.2Z" />
-            <path class="dog-tongue" d="M25.2 41.5c.5 1.8 1.5 4.8 2.8 4.8s2.3-3 2.8-4.8c-1 .5-1.9.7-2.8.7s-1.8-.2-2.8-.7Z" />
-            <path class="dog-collar" d="M20.5 48.2h15c.8 0 1.4.6 1.4 1.4v3.6H19.1v-3.6c0-.8.6-1.4 1.4-1.4Z" />
-            <text class="dog-tag" x="28" y="52.1" text-anchor="middle">VS</text>
+            <rect class="dog-collar" x="23" y="50.5" width="18" height="6.5" rx="3.2" />
+            <text class="dog-tag" x="32" y="55.6" text-anchor="middle">VS</text>
           </svg>
         </span>
         <span>

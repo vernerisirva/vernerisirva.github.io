@@ -18,20 +18,18 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /<body id="top">/);
   assert.match(html, /class="skip-link" href="#main"/);
   assert.match(html, /<main id="main">/);
-  assert.match(html, /class="brand-mark" aria-label="Blue Labrador logo"/);
+  assert.match(html, /class="brand-mark" aria-label="Dog logo"/);
   assert.match(html, /class="brand-dog"/);
-  assert.match(html, /class="dog-backdrop"/);
-  assert.match(html, /class="dog-base"/);
-  assert.match(html, /class="dog-treat"/);
+  assert.match(html, /class="dog-backdrop"[^>]*fill="url\(#brand-sky\)"/);
+  assert.match(html, /class="dog-ear"/);
+  assert.match(html, /class="dog-glint"/);
   assert.match(html, /class="dog-tongue"/);
   assert.match(html, /class="dog-tag"[^>]*>VS</);
-  assert.match(css, /background: #f0f9ff/);
-  assert.match(css, /\.dog-backdrop/);
-  assert.match(css, /\.dog-treat/);
+  assert.match(css, /\.dog-ear/);
   assert.match(css, /\.dog-head/);
-  assert.match(css, /\.dog-highlight/);
-  assert.match(css, /fill: #315379/);
-  assert.match(css, /fill: #0ea5e9/);
+  assert.match(css, /\.dog-muzzle/);
+  assert.match(css, /fill: #f8fafc/);
+  assert.match(css, /fill: #0f2c4a/);
   assert.match(css, /\.dog-collar/);
   assert.match(css, /a:focus-visible/);
   assert.match(css, /\.skip-link:focus/);
@@ -130,7 +128,7 @@ test("profile site includes assets and no accidental filler", () => {
   assert.match(html, /src="script\.js"/);
   assert.ok(existsSync(new URL("../assets/favicon.svg", import.meta.url)));
   assert.match(favicon, /<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 64 64">/);
-  assert.match(favicon, /#0ea5e9/);
+  assert.match(favicon, /#38bdf8/);
   assert.doesNotMatch(combined, /TODO|TBD|lorem|undefined/i);
 });
 
