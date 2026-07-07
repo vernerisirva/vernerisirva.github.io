@@ -124,22 +124,25 @@ button:focus-visible {
   opacity: 0.28;
 }
 
-.dog-head,
+.dog-head {
+  fill: #315379;
+}
+
 .dog-ear {
-  fill: #182234;
+  fill: #274465;
 }
 
 .dog-nose {
-  fill: #0b1120;
+  fill: #16304c;
 }
 
 .dog-highlight {
-  fill: #2c3a4f;
-  opacity: 0.76;
+  fill: #6f92ba;
+  opacity: 0.8;
 }
 
 .dog-muzzle {
-  fill: #2a3748;
+  fill: #3f648e;
 }
 
 .dog-eye {
@@ -147,7 +150,7 @@ button:focus-visible {
 }
 
 .dog-pupil {
-  fill: #0b1120;
+  fill: #16304c;
 }
 
 .dog-collar {

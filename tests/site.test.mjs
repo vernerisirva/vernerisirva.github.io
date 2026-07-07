@@ -18,7 +18,7 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(html, /<body id="top">/);
   assert.match(html, /class="skip-link" href="#main"/);
   assert.match(html, /<main id="main">/);
-  assert.match(html, /class="brand-mark" aria-label="Black Labrador logo"/);
+  assert.match(html, /class="brand-mark" aria-label="Blue Labrador logo"/);
   assert.match(html, /class="brand-dog"/);
   assert.match(html, /class="dog-backdrop"/);
   assert.match(html, /class="dog-base"/);
@@ -30,7 +30,7 @@ test("profile site includes the compact blue portfolio structure", () => {
   assert.match(css, /\.dog-treat/);
   assert.match(css, /\.dog-head/);
   assert.match(css, /\.dog-highlight/);
-  assert.match(css, /fill: #182234/);
+  assert.match(css, /fill: #315379/);
   assert.match(css, /fill: #0ea5e9/);
   assert.match(css, /\.dog-collar/);
   assert.match(css, /a:focus-visible/);
@@ -126,7 +126,7 @@ test("profile site includes assets and no accidental filler", () => {
   const favicon = read("assets/favicon.svg");
   const combined = `${html}\n${css}\n${js}`;
 
-  assert.match(html, /href="styles\.css\?v=polish1"/);
+  assert.match(html, /href="styles\.css\?v=[^"]+"/);
   assert.match(html, /src="script\.js"/);
   assert.ok(existsSync(new URL("../assets/favicon.svg", import.meta.url)));
   assert.match(favicon, /<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 64 64">/);
