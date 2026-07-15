@@ -7,62 +7,25 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("profile site includes the compact blue portfolio structure", () => {
+test("profile site presents Verneri's current identity and portfolio structure", () => {
   const html = read("index.html");
-  const css = read("styles.css");
 
-  assert.match(html, /AI systems developer/);
-  assert.doesNotMatch(html, /AI &amp; ML developer/);
-  assert.doesNotMatch(html, /Practical AI|practical AI/);
-  assert.match(html, /Verneri Sirva/);
-  assert.match(html, /<body id="top">/);
-  assert.match(html, /class="skip-link" href="#main"/);
-  assert.match(html, /<main id="main">/);
-  assert.match(html, /class="brand-mark" aria-label="Dog logo"/);
-  assert.match(html, /class="brand-dog"/);
-  assert.match(html, /class="dog-backdrop"[^>]*fill="url\(#brand-sky\)"/);
-  assert.match(html, /class="dog-ear"/);
-  assert.match(html, /class="dog-glint"/);
-  assert.match(html, /class="dog-tongue"/);
-  assert.match(html, /class="dog-tag"[^>]*>VS</);
-  assert.match(css, /\.dog-ear/);
-  assert.match(css, /\.dog-head/);
-  assert.match(css, /\.dog-muzzle/);
-  assert.match(css, /fill: #f8fafc/);
-  assert.match(css, /fill: #0f2c4a/);
-  assert.match(css, /\.dog-collar/);
-  assert.match(css, /a:focus-visible/);
-  assert.match(css, /\.skip-link:focus/);
-  assert.doesNotMatch(html, /AI systems &amp; software/);
+  assert.match(html, /<h1>Verneri Sirva<\/h1>/);
+  assert.match(html, /<p class="eyebrow">AI systems developer<\/p>/);
   assert.match(html, /I work with AI systems, research, and backend engineering,\s+with a focus on reliable software around models and data/);
-  assert.match(html, /AI systems and backend engineering/);
-  assert.doesNotMatch(html, /Machine learning, AI systems, and software/);
-  assert.doesNotMatch(html, /AI systems, machine learning, and backend engineering/);
-  assert.doesNotMatch(html, /I also write about what I learn/);
-  assert.doesNotMatch(html, /Longer notes on AI, prototypes, and software work/);
-  assert.doesNotMatch(html, /AI workflows and agents/);
-  assert.doesNotMatch(html, /I build agentic workflows and the backend services that support them/);
-  assert.doesNotMatch(html, /From prototypes to production/);
-  assert.doesNotMatch(html, /I work on AI workflows, agent systems, and the backend software\s+needed to make them useful/);
-  assert.doesNotMatch(html, /AI systems and workflows/);
-  assert.doesNotMatch(html, /make software work more\s+useful/);
-  assert.doesNotMatch(html, /I work with AI systems, automation, and backend software through\s+HiQ/);
+  assert.match(html, /Consultant at HiQ/);
   assert.match(html, /Working with AI systems and software at HiQ/);
-  assert.doesNotMatch(html, /Working with AI systems and software through HiQ/);
-  assert.match(html, /AI systems and backend engineering/);
-  assert.match(html, /Notes on AI systems, model evaluation, and engineering work/);
-  assert.match(html, /Technical writing and code/);
-  assert.doesNotMatch(html, /Where the longer trail lives/);
+  assert.match(html, /applying AI to R&amp;D work/);
   assert.match(html, /MSc in Computer Science\s+\(Machine Learning, soon\)/);
-  assert.match(html, /MSc Computer Science \(soon\)/);
-  assert.doesNotMatch(html, /pending official confirmation|MSc Computer Science \(pending\)/);
-  assert.match(html, /class="profile-panel"/);
-  assert.match(html, /class="profile-avatar"/);
-  assert.match(html, /src="assets\/verneri-profile\.jpg"/);
-  assert.match(html, /alt="Portrait of Verneri Sirva"/);
-  assert.match(css, /--bg: #f6f8fc/);
-  assert.match(css, /--accent: #0284c7/);
-  assert.doesNotMatch(html, /AI consultant, builder, and writer at HiQ/);
+  assert.match(html, /MSc Economics &middot; MSc Computer Science \(soon\)/);
+  assert.match(html, /Agentic memory research/);
+  assert.match(html, /Current research with/);
+  assert.match(html, /https:\/\/www\.olaresearch\.org\//);
+  assert.match(html, /https:\/\/github\.com\/OLAResearch/);
+  assert.match(html, /Professional interests/);
+  assert.match(html, /Agentic memory &middot; Deep research/);
+  assert.match(html, /Personal interests/);
+  assert.match(html, /Golf &middot; Gym &middot; Motorsport &middot; Dogs/);
 
   for (const id of ["about", "writing", "links"]) {
     assert.match(html, new RegExp(`id="${id}"`));
@@ -71,64 +34,71 @@ test("profile site includes the compact blue portfolio structure", () => {
   const sections = html.match(/<section\b/g) ?? [];
   assert.equal(sections.length, 4);
 
-  for (const label of ["Substack", "LinkedIn", "GitHub", "Hugging Face"]) {
+  for (const label of ["Substack", "LinkedIn", "GitHub", "Hugging Face", "Email"]) {
     assert.match(html, new RegExp(`>${label}<`));
   }
 
-  assert.match(html, /https:\/\/huggingface\.co\/datasets\/vennu95/);
-  assert.match(html, /Professional interests/);
-  assert.match(html, /class="about-copy"/);
-  assert.match(css, /\.about-copy/);
-  assert.match(css, /align-self: start/);
-  assert.match(css, /padding: 56px 0 56px/);
-  assert.match(html, /Agentic memory/);
-  assert.match(html, /Deep research/);
-  assert.match(html, /Current: agentic memory research with/);
-  assert.match(html, /https:\/\/www\.olaresearch\.org\//);
-  assert.match(html, /https:\/\/github\.com\/OLAResearch/);
-  assert.match(html, /Personal interests/);
-  assert.match(html, /Golf/);
-  assert.match(html, /Gym/);
-  assert.match(html, /Motorsport/);
-  assert.match(html, /Dogs/);
-
   const projectCards = html.match(/class="project-card"/g) ?? [];
   assert.equal(projectCards.length, 0);
-  assert.doesNotMatch(html, /id="projects"|InvestmentAgent|Hilla assistant system|signal-panel/);
 
-  assert.match(html, /Latest writing/);
-  assert.match(html, /https:\/\/verneri\.substack\.com/);
-  assert.match(html, /https:\/\/github\.com\/vernerisirva/);
-  assert.match(html, /https:\/\/www\.linkedin\.com\/in\/vernerisirva\//);
-  assert.match(html, /mailto:verneri\.sirva@hiq\.se/);
-  assert.match(html, /rel="icon" href="assets\/favicon\.svg" type="image\/svg\+xml"/);
-  assert.match(html, /property="og:title" content="Verneri Sirva \| AI systems developer"/);
-  assert.match(html, /property="og:url" content="https:\/\/vernerisirva\.github\.io\/"/);
-  assert.match(html, /name="twitter:card" content="summary"/);
-  assert.doesNotMatch(html, /tel:|\+46 70|Available for new engagements|Open to assignments|cut costs|save time|Contact me/);
-  assert.doesNotMatch(html, /your-profile|your\.email@example\.com/);
-  assert.doesNotMatch(html, /Eight things I’ve learned by 30/);
   const latestBlock = html.match(/<!-- latest-posts:start -->([\s\S]*?)<!-- latest-posts:end -->/)?.[1] ?? "";
   assert.match(latestBlock, /href="https:\/\/verneri\.substack\.com\/p\//);
   assert.match(latestBlock, /<strong>[^<]+<\/strong>/);
   assert.match(latestBlock, /<small>[^<]+<\/small>/);
   const postCards = html.match(/class="post-card"/g) ?? [];
   assert.equal(postCards.length, 3);
-  assert.doesNotMatch(html, /Start a conversation|Want to explore where AI could create value/i);
+  assert.doesNotMatch(html, /Available for new engagements|Open to assignments|cut costs|save time|Contact me/i);
+});
+
+test("profile site includes accessibility, responsive image, and sharing contracts", () => {
+  const html = read("index.html");
+  const css = read("styles.css");
+
+  assert.match(html, /<html lang="en">/);
+  assert.match(html, /class="skip-link" href="#main"/);
+  assert.match(html, /<main id="main">/);
+  assert.match(html, /aria-label="VS, Verneri Sirva, back to top"/);
+  assert.match(html, /class="brand-mark" aria-hidden="true"/);
+  assert.match(html, /class="brand-dog"/);
+  assert.match(html, /src="assets\/verneri-flatcoat-avatar\.webp"/);
+  assert.match(html, /<h2 class="eyebrow">Links<\/h2>/);
+  assert.match(css, /outline: 3px solid var\(--accent-strong\)/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(css, /scroll-margin-top: 88px/);
+  assert.match(css, /width: min\(100%, 420px\)/);
+  assert.match(css, /@media \(max-width: 340px\)/);
+
+  assert.match(html, /assets\/verneri-profile-320\.webp 320w/);
+  assert.match(html, /assets\/verneri-profile-640\.webp 640w/);
+  assert.match(html, /sizes="\(max-width: 640px\) 160px, 220px"/);
+  assert.match(html, /src="assets\/verneri-profile\.jpg"/);
+  assert.match(html, /alt="Portrait of Verneri Sirva"/);
+  assert.ok(existsSync(new URL("../assets/verneri-profile-320.webp", import.meta.url)));
+  assert.ok(existsSync(new URL("../assets/verneri-profile-640.webp", import.meta.url)));
+
+  assert.match(html, /<title>Verneri Sirva \| AI systems developer<\/title>/);
+  assert.match(html, /rel="canonical" href="https:\/\/vernerisirva\.github\.io\/"/);
+  assert.match(html, /property="og:image"\s+content="https:\/\/vernerisirva\.github\.io\/assets\/verneri-social-card\.jpg"/);
+  assert.match(html, /name="twitter:card" content="summary_large_image"/);
+  assert.match(html, /name="twitter:image"/);
+  assert.ok(existsSync(new URL("../assets/verneri-social-card.jpg", import.meta.url)));
 });
 
 test("profile site includes assets and no accidental filler", () => {
   const html = read("index.html");
   const css = read("styles.css");
   const js = read("script.js");
-  const favicon = read("assets/favicon.svg");
-  const combined = `${html}\n${css}\n${js}`;
+  const socialCard = read("assets/verneri-social-card.svg");
+  const combined = `${html}\n${css}\n${js}\n${socialCard}`;
 
   assert.match(html, /href="styles\.css\?v=[^"]+"/);
   assert.match(html, /src="script\.js"/);
-  assert.ok(existsSync(new URL("../assets/favicon.svg", import.meta.url)));
-  assert.match(favicon, /<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 64 64">/);
-  assert.match(favicon, /#38bdf8/);
+  assert.match(html, /href="assets\/favicon\.png" type="image\/png"/);
+  assert.ok(existsSync(new URL("../assets/favicon.png", import.meta.url)));
+  assert.ok(existsSync(new URL("../assets/verneri-flatcoat-avatar.webp", import.meta.url)));
+  assert.match(socialCard, /width="1200" height="630"/);
+  assert.match(socialCard, /href="verneri-flatcoat-avatar\.webp"/);
+  assert.match(socialCard, /href="verneri-profile\.jpg"/);
   assert.doesNotMatch(combined, /TODO|TBD|lorem|undefined/i);
 });
 

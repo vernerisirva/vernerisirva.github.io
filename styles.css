@@ -9,6 +9,7 @@
   --line-strong: rgba(15, 31, 51, 0.16);
   --accent: #0284c7;
   --accent-strong: #0369a1;
+  --accent-deep: #075985;
   --accent-soft: rgba(2, 132, 199, 0.1);
   --shadow-sm: 0 1px 2px rgba(15, 31, 51, 0.04), 0 6px 18px rgba(15, 31, 51, 0.05);
   --shadow-md: 0 12px 40px rgba(15, 31, 51, 0.1);
@@ -46,7 +47,7 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid rgba(14, 165, 233, 0.42);
+  outline: 3px solid var(--accent-strong);
   outline-offset: 4px;
 }
 
@@ -96,6 +97,7 @@ button:focus-visible {
   width: 42px;
   height: 42px;
   place-items: center;
+  overflow: hidden;
   border-radius: 11px;
   box-shadow: var(--shadow-sm);
 }
@@ -104,52 +106,13 @@ button:focus-visible {
   width: 42px;
   height: 42px;
   display: block;
-}
-
-.dog-ear {
-  fill: #bae6fd;
-}
-
-.dog-head {
-  fill: #f8fafc;
-}
-
-.dog-muzzle {
-  fill: #ffffff;
-}
-
-.dog-eye,
-.dog-nose {
-  fill: #0f2c4a;
-}
-
-.dog-glint {
-  fill: #ffffff;
-  opacity: 0.9;
-}
-
-.dog-tongue {
-  fill: #fb7185;
-}
-
-.dog-collar {
-  fill: #ffffff;
-}
-
-.dog-tag {
-  fill: #0369a1;
-  font-size: 5px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  object-fit: cover;
 }
 
 .brand strong {
   display: block;
-  line-height: 1.15;
-}
-
-.brand strong {
   font-size: 1.02rem;
+  line-height: 1.15;
 }
 
 .site-nav {
@@ -192,10 +155,11 @@ button:focus-visible {
 
 .eyebrow {
   margin: 0 0 14px;
-  color: var(--accent);
+  color: var(--accent-strong);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  line-height: 1.65;
   text-transform: uppercase;
 }
 
@@ -263,13 +227,13 @@ h3 {
 
 .button.primary {
   border-color: transparent;
-  background: var(--accent);
+  background: var(--accent-strong);
   color: #ffffff;
-  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.28);
+  box-shadow: 0 8px 22px rgba(3, 105, 161, 0.24);
 }
 
 .button.primary:hover {
-  background: var(--accent-strong);
+  background: var(--accent-deep);
 }
 
 .button.secondary {
@@ -314,6 +278,11 @@ h3 {
   object-position: 50% 34%;
 }
 
+.profile-picture {
+  display: block;
+  line-height: 0;
+}
+
 .profile-note {
   position: relative;
   z-index: 1;
@@ -323,7 +292,7 @@ h3 {
 .profile-note span {
   display: block;
   margin-bottom: 8px;
-  color: var(--accent);
+  color: var(--accent-strong);
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -415,7 +384,19 @@ h3 {
 }
 
 .interests-card a:hover {
-  color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.stat a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(2, 132, 199, 0.35);
+  text-underline-offset: 3px;
+}
+
+.stat a:hover {
+  color: var(--accent-strong);
 }
 
 .stat {
@@ -465,7 +446,7 @@ h3 {
 .post-card span {
   display: block;
   margin-bottom: 10px;
-  color: var(--accent);
+  color: var(--accent-strong);
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -493,7 +474,7 @@ h3 {
 }
 
 .mini-heading a {
-  color: var(--accent);
+  color: var(--accent-strong);
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -600,6 +581,19 @@ h3 {
   .hero {
     padding-top: 44px;
   }
+
+  .profile-panel {
+    width: min(100%, 420px);
+    justify-self: center;
+  }
+}
+
+@media (min-width: 641px) {
+  #about,
+  #writing,
+  #links {
+    scroll-margin-top: 88px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -657,5 +651,47 @@ h3 {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 340px) {
+  .hero-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-actions .primary {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .skip-link,
+  .site-nav a,
+  .button,
+  .link-card,
+  .post-card,
+  .link-row a {
+    transition: none;
+  }
+
+  .site-nav a:active,
+  .button:hover,
+  .button:active,
+  .link-row a:hover,
+  .link-row a:active,
+  .post-card:hover,
+  .post-card:active,
+  .link-card:hover,
+  .link-card:active {
+    transform: none;
   }
 }

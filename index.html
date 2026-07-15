@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Verneri Sirva - AI systems developer working with backend engineering and software."
+      content="Verneri Sirva is an AI systems developer at HiQ working with research and backend engineering."
     />
     <meta property="og:title" content="Verneri Sirva | AI systems developer" />
     <meta
@@ -14,52 +14,55 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vernerisirva.github.io/" />
-    <meta name="twitter:card" content="summary" />
-    <title>Verneri Sirva | Personal AI Portfolio</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:site_name" content="Verneri Sirva" />
+    <meta
+      property="og:image"
+      content="https://vernerisirva.github.io/assets/verneri-social-card.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta
+      property="og:image:alt"
+      content="Verneri Sirva, AI systems developer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Verneri Sirva | AI systems developer" />
+    <meta
+      name="twitter:description"
+      content="AI systems, research, backend engineering, and writing by Verneri Sirva."
+    />
+    <meta
+      name="twitter:image"
+      content="https://vernerisirva.github.io/assets/verneri-social-card.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Verneri Sirva, AI systems developer"
+    />
+    <title>Verneri Sirva | AI systems developer</title>
+    <link rel="canonical" href="https://vernerisirva.github.io/" />
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=logo-pup" />
+    <link rel="stylesheet" href="styles.css?v=flatcoat-avatar" />
   </head>
   <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Back to top">
-        <span class="brand-mark" aria-label="Dog logo">
-          <svg class="brand-dog" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-            <defs>
-              <linearGradient id="brand-sky" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#38bdf8" />
-                <stop offset="1" stop-color="#0369a1" />
-              </linearGradient>
-            </defs>
-            <rect class="dog-backdrop" width="64" height="64" rx="16" fill="url(#brand-sky)" />
-            <ellipse class="dog-ear" cx="15.5" cy="33" rx="7" ry="12.5" transform="rotate(14 15.5 33)" />
-            <ellipse class="dog-ear" cx="48.5" cy="33" rx="7" ry="12.5" transform="rotate(-14 48.5 33)" />
-            <path
-              class="dog-head"
-              d="M32 12c-10.5 0-17 7.6-17 17.5 0 10.5 6.8 18 17 18s17-7.5 17-18C49 19.6 42.5 12 32 12Z"
-            />
-            <ellipse class="dog-muzzle" cx="32" cy="38.5" rx="9" ry="7" />
-            <circle class="dog-eye" cx="25" cy="27.5" r="2.3" />
-            <circle class="dog-eye" cx="39" cy="27.5" r="2.3" />
-            <circle class="dog-glint" cx="25.8" cy="26.7" r="0.75" />
-            <circle class="dog-glint" cx="39.8" cy="26.7" r="0.75" />
-            <path
-              class="dog-nose"
-              d="M32 33.4c2.7 0 4.3 1.3 4.3 3 0 2-1.9 3.4-4.3 3.4s-4.3-1.4-4.3-3.4c0-1.7 1.6-3 4.3-3Z"
-            />
-            <path
-              class="dog-tongue"
-              d="M29.4 41.9c.5 1.7 1.4 3.9 2.6 3.9s2.1-2.2 2.6-3.9c-.9.4-1.7.6-2.6.6s-1.7-.2-2.6-.6Z"
-            />
-            <rect class="dog-collar" x="23" y="50.5" width="18" height="6.5" rx="3.2" />
-            <text class="dog-tag" x="32" y="55.6" text-anchor="middle">VS</text>
-          </svg>
+      <a class="brand" href="#top" aria-label="VS, Verneri Sirva, back to top">
+        <span class="brand-mark" aria-hidden="true">
+          <img
+            class="brand-dog"
+            src="assets/verneri-flatcoat-avatar.webp"
+            width="512"
+            height="512"
+            alt=""
+          />
         </span>
         <span>
           <strong>Verneri Sirva</strong>
@@ -88,20 +91,28 @@
           </div>
         </div>
 
-        <div class="profile-panel" aria-label="Profile photo">
-          <img
-            class="profile-avatar"
-            src="assets/verneri-profile.jpg"
-            width="750"
-            height="1000"
-            alt="Portrait of Verneri Sirva"
-          />
+        <div class="profile-panel">
+          <picture class="profile-picture">
+            <source
+              type="image/webp"
+              srcset="
+                assets/verneri-profile-320.webp 320w,
+                assets/verneri-profile-640.webp 640w
+              "
+              sizes="(max-width: 640px) 160px, 220px"
+            />
+            <img
+              class="profile-avatar"
+              src="assets/verneri-profile.jpg"
+              width="750"
+              height="1000"
+              alt="Portrait of Verneri Sirva"
+            />
+          </picture>
           <div class="profile-note">
             <span>Consultant at HiQ</span>
             <strong>AI systems developer</strong>
-            <p>
-              AI systems and backend engineering.
-            </p>
+            <p>MSc Economics &middot; MSc Computer Science (soon)</p>
           </div>
         </div>
       </section>
@@ -114,8 +125,8 @@
         <div class="about-body">
           <div class="about-copy">
             <p>
-              I'm an AI developer working with AI systems and backend
-              engineering. I hold an
+              I work with AI systems and backend engineering, including
+              applying AI to R&amp;D work. I hold an
               MSc in Economics (Econometrics) and an MSc in Computer Science
               (Machine Learning, soon).
             </p>
@@ -123,12 +134,6 @@
               <div>
                 <strong>Professional interests</strong>
                 <span>Agentic memory &middot; Deep research</span>
-                <span>
-                  Current: agentic memory research with
-                  <a href="https://www.olaresearch.org/">OLA Research</a>
-                  &middot;
-                  <a href="https://github.com/OLAResearch">GitHub</a>
-                </span>
               </div>
               <div>
                 <strong>Personal interests</strong>
@@ -138,8 +143,13 @@
           </div>
           <div class="about-stats" aria-label="At a glance">
             <div class="stat">
-              <strong>AI systems developer</strong>
-              <span>AI systems and backend engineering</span>
+              <strong>Agentic memory research</strong>
+              <span>
+                Current research with
+                <a href="https://www.olaresearch.org/">OLA Research</a>
+                &middot;
+                <a href="https://github.com/OLAResearch">GitHub</a>
+              </span>
             </div>
             <div class="stat">
               <strong>MSc Economics &middot; MSc Computer Science (soon)</strong>
@@ -202,7 +212,7 @@
       </section>
 
       <section class="section-shell links-section" id="links">
-        <p class="eyebrow">Links</p>
+        <h2 class="eyebrow">Links</h2>
         <div class="link-row" aria-label="External profile links">
           <a href="https://verneri.substack.com">Substack</a>
           <a href="https://www.linkedin.com/in/vernerisirva/">LinkedIn</a>
