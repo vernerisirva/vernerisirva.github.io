@@ -195,6 +195,36 @@ test("Substack updater can use the RSS proxy JSON source", () => {
   }
 });
 
+test("Substack updater falls back across default network sources", () => {
+  const output = execFileSync("python3", [
+    "-c",
+    `
+from pathlib import Path
+import scripts.update_substack_posts as updater
+
+class Args:
+    feed_file = None
+    feed_url = None
+    archive_file = None
+    archive_url = updater.DEFAULT_ARCHIVE_URL
+    proxy_file = None
+    proxy_url = updater.DEFAULT_PROXY_URL
+    count = 3
+
+def failing_proxy(args):
+    raise RuntimeError("proxy 500")
+
+updater.read_proxy = failing_proxy
+updater.read_archive = lambda args: Path("tests/fixtures/substack-archive.json").read_text(encoding="utf-8")
+
+posts = updater.load_posts(Args())
+print(posts[0]["title"])
+`,
+  ], { encoding: "utf8" });
+
+  assert.match(output, /Newest archive post/);
+});
+
 test("GitHub Action refreshes Substack posts automatically", () => {
   const workflow = read(".github/workflows/update-substack-posts.yml");
   const updater = read("scripts/update_substack_posts.py");

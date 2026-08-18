@@ -192,6 +192,36 @@ def parse_proxy_posts(proxy_json, count):
     raise ValueError(f"Expected at least {count} complete posts in proxy, found {len(posts)}")
 
 
+def load_posts(args):
+    if args.feed_file or args.feed_url:
+        feed_xml = read_feed(args)
+        return parse_posts(feed_xml, args.count)
+
+    if args.archive_file or args.archive_url != DEFAULT_ARCHIVE_URL:
+        archive_json = read_archive(args)
+        return parse_archive_posts(archive_json, args.count)
+
+    if args.proxy_file or args.proxy_url != DEFAULT_PROXY_URL:
+        proxy_json = read_proxy(args)
+        return parse_proxy_posts(proxy_json, args.count)
+
+    sources = [
+        ("RSS proxy", read_proxy, parse_proxy_posts),
+        ("Substack archive", read_archive, parse_archive_posts),
+        ("Substack feed", read_feed, parse_posts),
+    ]
+    errors = []
+
+    for label, read_source, parse_source in sources:
+        try:
+            return parse_source(read_source(args), args.count)
+        except Exception as error:
+            errors.append(f"{label}: {error}")
+            print(f"Could not load {label}; trying next source: {error}", file=sys.stderr)
+
+    raise RuntimeError("All Substack sources failed: " + " | ".join(errors))
+
+
 def render_posts(posts):
     rendered = [f"            {START_MARKER}"]
 
@@ -234,15 +264,7 @@ def main():
     args = parser.parse_args()
 
     index_path = Path(args.index)
-    if args.feed_file or args.feed_url:
-        feed_xml = read_feed(args)
-        posts = parse_posts(feed_xml, args.count)
-    elif args.archive_file or args.archive_url != DEFAULT_ARCHIVE_URL:
-        archive_json = read_archive(args)
-        posts = parse_archive_posts(archive_json, args.count)
-    else:
-        proxy_json = read_proxy(args)
-        posts = parse_proxy_posts(proxy_json, args.count)
+    posts = load_posts(args)
     current_html = index_path.read_text(encoding="utf-8")
     updated_html = replace_posts(current_html, render_posts(posts))
     index_path.write_text(updated_html, encoding="utf-8")
